@@ -97,46 +97,44 @@ int main(void)
     //     }
     // }
 
-    //Capitalize the first word of the letter
-    string word;
-    bool first = true;
-    cin >> word;
-    char characters[word.length()];
-    int j = 0;
+    // Capitalize the first word of the letter
+    // string word;
+    // bool first = true;
+    // getline(cin , word);
+    // char characters[word.length()];
+    // int j = 0;
 
-    for (int i = 0; i < word.length(); i++)
-    {
-        if(first){
-            if((int)word[i] <= 97 && (int)word[i] <= 122){
-                word[i] -= 32;
-                characters[j++] = word[i];
-            }else{
-                characters[j++] = word[i];
-            }
-            first = false;
-        }
-        characters[j++] = word[i];
-    }
+    // for (int i = 0; i < word.length(); i++)
+    // {
+    //     if (first)
+    //     {
+    //         if (word[i] >= 97 && word[i] <= 122)
+    //         {
+    //             word[i] -= 32;
+    //             characters[j++] = word[i];
+    //             first = false;
+    //         }
+    //         else if(word[i] >= 65 && word[i] <= 90)
+    //         {
+    //             characters[j++] = word[i];
+    //             first = false;
+    //         }else if(word[i] != (word[i] >= 65 && word[i] <= 90) && word[i] != (word[i] >= 65 && word[i] <= 90)){
+    //             characters[j++] = word[i];
+    //         }
+            
+    //     }
+    //     else if (word[i] == '.')
+    //     {
+    //         characters[j++] = word[i];
+    //         first = true;
+    //     }
+    //     else
+    //     {
+    //         characters[j++] = word[i];
+    //     }
+    // }
 
-    characters[j] = '\0';
-
-    cout << characters << endl;
-
-
-    // char a = 'a';
-    // char z = 'z';
-    // char A = 'A';
-    // char Z = 'Z';
-    // char b = 'b';
     
-    // cout << int(a) << " " << int(b) << " " << int(z) << endl;
-    // cout << int(A) << " " << int(Z) << endl;
-
-    
-
-    
-
-
 
     return 0;
 }
