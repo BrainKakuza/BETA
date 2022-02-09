@@ -16,7 +16,6 @@ int main()
 
     int firstL = first.length();
     int lastL = last.length();
-    cout << firstL << " " << lastL << endl;
 
     if (op == "+")
     {
@@ -26,15 +25,26 @@ int main()
             ZEROS(&firstL);
         }else{
             if(firstL > lastL){
-                firstL = (firstL - lastL) - 1;
-                lastL -= 1;
+                int bigger = firstL - lastL - 1;
+                int smaller = lastL - 1;
                 cout << "1";
-                ZEROS(&firstL);
+                ZEROS(&bigger);
                 cout << "1";
-                ZEROS(&lastL);
+                ZEROS(&smaller);
+            }else{
+                int bigger = lastL - firstL - 1;
+                int smaller = firstL - 1;
+                cout << "1";
+                ZEROS(&bigger);
+                cout << "1";
+                ZEROS(&smaller);
             }
-
         }
+    }else{
+        int howLong = abs(firstL + lastL - 2);
+        cout << "1";
+        ZEROS(&howLong);
+        
     }
 
     return 0;
