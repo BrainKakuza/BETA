@@ -50,6 +50,7 @@ void reverse(int length, string input)
 
     for (int i = length - 1; i >= 0; i--)
     {
+        //using push back is faster than declare an char array because you can now put it in a string
         back.push_back(input[i]);
     }
 
@@ -64,6 +65,7 @@ void swap(int *fArr, int *lArr, int length)
 {
     for (int i = 0; i < length; i++)
     {
+        //Because it is a number we can just add and minus like this
         fArr[i] += lArr[i];
         lArr[i] = fArr[i] - lArr[i];
         fArr[i] -= lArr[i];
