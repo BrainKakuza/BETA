@@ -2,11 +2,9 @@
 #include <cstring>
 #include <string>
 
-#define MAX = 100;
-
 using namespace std;
 
-void Input(int input, string array[4000][3], int &k)
+void Input(int input, string array[4000][4000], int &k)
 {
     string name;
     int m = 0;
@@ -55,7 +53,18 @@ void Input(int input, string array[4000][3], int &k)
                     }
                     else
                     {
-                        array[j][2] = last;
+						int positon = 2;
+                        while (true)
+						{
+							if(array[j][positon] == "")
+							{
+								array[j][positon] = last;
+								break;
+							}else
+							{
+								positon++;
+							}
+						}
                     }
                     notSame = false;
                 }
@@ -107,7 +116,7 @@ void Input(int input, string array[4000][3], int &k)
     k = m - 1;
 }
 
-void Gene(int input, string array[4000][3], int &k)
+void Gene(int input, string array[4000][4000], int &k)
 {
     for (int i = 0; i < k; i++)
     {
@@ -156,7 +165,7 @@ void Gene(int input, string array[4000][3], int &k)
     }
 }
 
-void Sort(int input, string array[4000][3], int &k)
+void Sort(int input, string array[4000][4000], int &k)
 {
     for (int i = 0; i < k; i++)
     {
@@ -180,7 +189,7 @@ int main()
     int input;
     int k = 0;
     cin >> input;
-    string array[4000][3];
+    string array[4000][4000];
     
     Input(input, array, k);
 
@@ -236,10 +245,8 @@ int main()
             cout << array[i][j] << " ";
         }
 
-        if (i != k - 1)
-        {
+        
             cout << endl;
-        }
         
     }
 

@@ -2,11 +2,9 @@
 #include <cstring>
 #include <string>
 
-#define MAX = 100;
-
 using namespace std;
 
-void Input(int input, string array[4000][3], int &k)
+void Input(int input, string array[4000][10], int &k)
 {
     string name;
     int m = 0;
@@ -55,7 +53,19 @@ void Input(int input, string array[4000][3], int &k)
                     }
                     else
                     {
-                        array[j][2] = last;
+                        int positon = 2;
+                        while (true)
+                        {
+                            if (array[j][positon] == "")
+                            {
+                                array[j][positon] = last;
+                                break;
+                            }
+                            else
+                            {
+                                positon++;
+                            }
+                        }
                     }
                     notSame = false;
                 }
@@ -82,51 +92,86 @@ void Input(int input, string array[4000][3], int &k)
         }
     }
 
+    
     // for adding a new member
     for (int i = 0; i < m; i++)
     {
-        string back = array[i][2];
-        bool newName = true;
-        for (int j = 0; j < m; j++)
+        for (int j = 2; j <= 10; j++)
         {
-            string compare = array[j][0];
-            if (array[i][2] == array[j][0])
-            {
-                newName = false;
-            }
-        }
+            string back = array[i][j];
 
-        if (newName)
-        {
-            array[m][0] = array[i][2];
-            string result = array[m][0];
-            m++;
+            if(back == "")
+            {
+                break;
+            }
+            bool newName = true;
+
+            for (int l = 0; l < m; l++)
+            {
+                string compare = array[l][0];
+                if (array[i][j] == array[l][0])
+                {
+                    newName = false;
+                }
+            }
+
+            if (newName)
+            {
+                array[m][0] = array[i][j];
+                string result = array[m][0];
+                m++;
+            }
         }
     }
 
-    k = m - 1;
+    k = m;
 }
 
-void Gene(int input, string array[4000][3], int &k)
+void Gene(int input, string array[4000][10], int &k)
 {
     for (int i = 0; i < k; i++)
     {
         string firstSample;
         string secondSample;
         bool swap = true;
+        bool theEnd = false;
 
         if (array[i][1] == "" && array[i][0] != "")
         {
             for (int j = 0; j < k; j++)
             {
-                if ((array[i][0] == array[j][2]) && swap)
+                for (int l = 2; l <= 10; l++)
                 {
-                    firstSample = array[j][1];
-                    swap = false;
+                    if ((array[i][0] == array[j][l]) && swap)
+                    {
+                        if (array[j][l] == "")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            firstSample = array[j][1];
+                            swap = false;
+                            break;
+                        }
+                    }
+                    else if ((array[i][0] == array[j][l]) && !swap)
+                    {
+                        if (array[j][l] == "")
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            secondSample = array[j][1];
+                            theEnd = true;
+                            break;
+                        }                        
+                    }
                 }
-                else if ((array[i][0] == array[j][2]) && !swap)
+
+                if(theEnd)
                 {
-                    secondSample = array[j][1];
                     break;
                 }
             }
@@ -148,7 +193,7 @@ void Gene(int input, string array[4000][3], int &k)
             {
                 array[i][1] = "recessive";
             }
-            else  
+            else
             {
                 array[i][1] = "non-existent";
             }
@@ -156,7 +201,7 @@ void Gene(int input, string array[4000][3], int &k)
     }
 }
 
-void Sort(int input, string array[4000][3], int &k)
+void Sort(int input, string array[4000][10], int &k)
 {
     for (int i = 0; i < k; i++)
     {
@@ -180,15 +225,15 @@ int main()
     int input;
     int k = 0;
     cin >> input;
-    string array[4000][3];
-    
+    string array[4000][10];
+
     Input(input, array, k);
 
-    // cout << endl;
+    //cout << endl;
 
     // for (int i = 0; i < k; i++)
     // {
-    //     for (int j = 0; j < 3; j++)
+    //     for (int j = 0; j < 10; j++)
     //     {
     //         if (array[i][j] == "")
     //         {
@@ -202,7 +247,7 @@ int main()
     //     cout << endl;
     // }
 
-    // cout << endl;
+    //cout << endl;
 
     Gene(input, array, k);
 
@@ -226,21 +271,15 @@ int main()
 
     Sort(input, array, k);
 
-    //cout << endl;
+    // cout << endl;
 
     for (int i = 0; i < k; i++)
     {
-
         for (int j = 0; j < 2; j++)
         {
             cout << array[i][j] << " ";
         }
-
-        if (i != k - 1)
-        {
-            cout << endl;
-        }
-        
+        cout << endl;
     }
 
     return 0;
