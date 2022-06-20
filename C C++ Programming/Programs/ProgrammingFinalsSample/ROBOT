@@ -1,0 +1,71 @@
+int main()
+{
+  Robot r;
+  string c, way;
+  char d;
+  int j, k;
+  while(true)
+  {
+    cin>>c;
+    if(c == "STOP")
+    {
+      break;
+    }
+    if(c == "SHOWINFO")
+    {
+      r.display();
+    }
+    if(c == "TURNTO")
+    {
+      cin>>d;
+      while(r.getDirection() != d)
+        r.turn("LEFT");
+    }
+    if(c == "TURN")
+    {
+      cin>>way;
+      r.turn(way);
+    }
+    if(c == "GO")
+    {
+      cin>>j;
+      for(k = 0;k < j;k ++)
+        r.go();
+    }
+    if(c == "GOTO")
+    {
+      cin>>j;
+      if(r.getPositionX() - j > 0)
+      {
+        while(r.getDirection() != 'W')
+          r.turn("LEFT");
+        while(r.getPositionX() != j)
+          r.go();
+      }
+      else
+      {
+        while(r.getDirection() != 'E')
+          r.turn("LEFT");
+        while(r.getPositionX() != j)
+          r.go();
+      }
+      cin>>j;
+      if(r.getPositionY() - j > 0)
+      {
+        while(r.getDirection() != 'S')
+          r.turn("LEFT");
+        while(r.getPositionY() != j)
+          r.go();
+      }
+      else
+      {
+        while(r.getDirection() != 'N')
+          r.turn("LEFT");
+        while(r.getPositionY() != j)
+          r.go();
+      }
+      while(r.getDirection() != 'N')
+        r.turn("LEFT");
+    }
+  }
+}

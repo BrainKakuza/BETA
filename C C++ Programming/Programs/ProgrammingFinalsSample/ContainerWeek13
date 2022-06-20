@@ -1,0 +1,31 @@
+class RemoveFromBig : public Container {
+public:
+  int remove() {
+    int j, max = 0;
+    for(j = 1;j < index;j ++) {
+      if(data[j] > data[max])
+        max = j;
+    }
+    int temp = data[max];
+    for(j = max;j < index;j ++)
+      data[j] = data[j + 1];
+    index --;
+    return temp;
+  }
+};
+
+class RemoveFromSmall : public Container {
+public:
+  int remove() {
+    int j, min = 0;
+    for(j = 1;j < index;j ++) {
+      if(data[j] < data[min])
+        min = j;
+    }
+    int temp = data[min];
+    for(j = min;j < index;j ++)
+      data[j] = data[j + 1];
+    index --;
+    return temp;
+  }
+};

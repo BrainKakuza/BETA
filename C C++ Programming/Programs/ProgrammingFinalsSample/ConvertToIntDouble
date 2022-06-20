@@ -1,0 +1,48 @@
+class Convert : public std::string {
+public:
+  Convert() {
+        this->clear();
+  }
+    Convert(string s) {
+        this->clear();
+        this->append(s);
+    }
+  int toInt() {
+    int n = 0;
+    int s = 1;
+    int j = 0;
+    if((*this)[0] == '-') {
+      s = -1;
+      j = 1;
+    }
+    for(;j < length();j ++)
+    {
+      n = n * 10 + ((*this)[j] - '0');
+    }
+    n = n * s;
+    return n;
+  }
+  double toDouble() {
+    double n = 0;
+    int s = 1, base = 1;
+    int j = 0;
+    bool flag = true;
+    if((*this)[0] == '-') {
+      s = -1;
+      j = 1;
+    }
+    for(;j < length();j ++)
+    {
+      if((*this)[j] == '.') {
+        flag = false;
+        continue;
+      }
+      n = n * 10 + ((*this)[j] - '0');
+      if(!flag)
+        base *= 10;
+    }
+    n = n * s;
+    n = n / base;
+    return n;
+  }
+};

@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+
+using namespace std ;
+
+class HTMLElement
+{
+    public :
+        HTMLElement(string str) : tagName(""), content("")
+        {
+            for(int i = 1 ; str[i] != ' ' && str[i] != '>' ; i++)
+            {
+                tagName += str[i] ;
+            }
+            for(int i = str.find(">") + 1 ; str[i + 1] != '/' || str[i] != '<' ; i++)
+            {
+                content += str[i] ;
+            }
+        }
+        string getTagName() { return tagName ; }
+        string getContent() { return content ; }
+    protected :
+        string tagName ;
+        string content ;
+} ;
+
+int main(int argc, char const **argv)
+{
+    string str ;
+    getline(cin, str) ;
+    HTMLElement html(str) ;
+    cout << html.getTagName() << endl ;
+    cout << html.getContent() << endl ;
+    return 0 ;
+}

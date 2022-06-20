@@ -1,0 +1,77 @@
+lass queue:public container
+{
+    public:
+        int idx;
+        queue(int l):container(l){idx = 0;}
+        bool put_in(int obj)
+        {
+            if (idx == len)
+                return false;
+            box[idx++] = obj;
+            return true;
+        }
+
+        int *take_out()
+        {
+            if (idx == 0)
+                return NULL;
+            int *ptr = new int;
+            *ptr = box[0];
+            for (int i=0; i<idx-1; i++)
+                box[i] = box[i+1];
+            idx --;
+            return ptr;
+        }
+};
+
+class priority_queue:public queue
+{
+    public:
+        bool order;
+        //int idx;
+        priority_queue(int _len, bool f):queue(_len)
+        {
+            order = f;
+            idx = 0;
+        }
+        int *take_out()
+        {
+            if (idx == 0) return NULL;
+            int *minptr, *maxptr, min = 2147483647, max = -2147483648, minidx = 0, maxidx = 0;
+            for (int i=0; i<idx; i++)
+            {
+                if (box[i] < min)
+                {
+                    min = box[i];
+                    minptr = box + i;
+                    minidx = i;
+                }
+                if (box[i] > max)
+                {
+                    max = box[i];
+                    maxptr = box + i;
+                    maxidx = i;
+                }
+            }
+            
+            if (order)
+            {
+                for (int i=maxidx; i<idx-1; i++)
+                    box[i] = box[i+1];
+                idx --;
+                int *ptr = new int;
+                *ptr = max;
+                return ptr;
+            }
+            else
+            {
+                for (int i=minidx; i<idx-1; i++)
+                    box[i] = box[i+1];
+                idx --;
+                int *ptr = new int;
+                *ptr = min;
+                return ptr;
+            }
+           
+        }
+};

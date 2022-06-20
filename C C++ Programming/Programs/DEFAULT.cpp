@@ -1,13 +1,17 @@
 #include <iostream>
-#include <string.h>
 
 using namespace std;
 
+class M
+{
+public:
+    virtual int remove() = 0;
+};
+
 int main()
 {
-    string n = "ha";
+    M * m = new M();
 
-    cout << n[0];
-    
+    cout << *m.remove() << endl;
     return 0;
 }
